@@ -68,7 +68,7 @@
                 <div class="tab-pane{{#selected}} active{{/selected}}" id="{{{ containerid }}}_{{ id }}" role="tabpanel" aria-labelledby="{{{ containerid }}}_{{ id}}">
                     <h1>{{ word}} <span class="functionallabel">{{ fl }}</span></h1>
                     {{#hasaudio}}
-                        <div class="mb-3">
+                        <div id="pronunciations-container" class="mb-3">
                             {{#pronunciations}}
                                 <a class="btn btn-sm btn-outline-primary inline-playable" href="{{{audiourl}}}">{{{text}}} <i class="fa-solid fa-volume-high"></i></a>
                             {{/pronunciations}}
@@ -102,12 +102,19 @@
 {{/closematch}}
 
 {{#js}}
-    document.addEventListener('click', function (e) {
+    document.addEventListener('click', (e) => {
         let element = e.target.closest('a.inline-playable');
         if (element) {
             e.preventDefault();
-            const audio = new Audio(element.href);
-            audio.play();
+            const parent = element.parentNode;
+            if (!parent.classList.contains('playing')) {
+                parent.classList.add('playing');
+                const audio = new Audio(element.href);
+                audio.addEventListener('ended', (event) => {
+                    parent.classList.remove('playing');
+                });
+                audio.play();
+            }
         }
     });
 {{/js}}
