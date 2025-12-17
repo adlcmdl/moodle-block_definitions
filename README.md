@@ -17,7 +17,7 @@ to make sure it will meet your needs.
 
 **Change Log**
 
-*current version*
+2025121700
 - Add support for pronunication audio.
 - Fix tabs to work with Bootstrap 5.
 - Update required Moodle version to 5.0
