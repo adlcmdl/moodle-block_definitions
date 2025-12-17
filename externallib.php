@@ -112,10 +112,10 @@ class block_definitions_external extends external_api {
                                     new external_single_structure(
                                             [
                                                 'text' => new external_value(PARAM_TEXT, 'The text pronunication'),
-                                                'audiourl' => new external_value(PARAM_URL, 'The URL to the pronunication file.')
+                                                'audiourl' => new external_value(PARAM_URL, 'The URL to the pronunication file.'),
                                             ]
                                     ), '', VALUE_OPTIONAL
-                            ),                            
+                            ),
                             'def' => new external_multiple_structure(
                                     new external_single_structure(
                                             [

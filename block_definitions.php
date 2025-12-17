@@ -22,7 +22,6 @@
  * @copyright 2021 Pembina Hills School Division. All rights reserved.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 defined('MOODLE_INTERNAL') || die();
 require_once('locallib.php');
 
@@ -30,7 +29,6 @@ require_once('locallib.php');
  * Display the dictionary block
  */
 class block_definitions extends block_base {
-
     /**
      * Initialise the block.
      */
@@ -88,5 +86,4 @@ class block_definitions extends block_base {
             'mod' => true,
         ];
     }
-
 }

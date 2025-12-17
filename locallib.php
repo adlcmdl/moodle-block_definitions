@@ -168,7 +168,7 @@ function block_definitions_retrieve_definition($word, $dictionary, $format = 'no
                                 $filename = $prs->sound->audio;
                                 if (substr($filename, 0, 3) == 'bix') {
                                     $subdir = 'bix';
-                                } elseif (substr($filename, 0, 2) == 'gg') {
+                                } else if (substr($filename, 0, 2) == 'gg') {
                                     $subdir = 'gg';
                                 } else if (is_numeric(substr($filename, 0, 1)) || IntlChar::ispunct(substr($filename, 0, 1))) {
                                     $subdir = 'number';
