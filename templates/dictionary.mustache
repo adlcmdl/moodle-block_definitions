@@ -67,6 +67,13 @@
             {{#panels}}
                 <div class="tab-pane{{#selected}} active{{/selected}}" id="{{{ containerid }}}_{{ id }}" role="tabpanel" aria-labelledby="{{{ containerid }}}_{{ id}}">
                     <h1>{{ word}} <span class="functionallabel">{{ fl }}</span></h1>
+                    {{#hasaudio}}
+                        <div class="mb-3">
+                            {{#pronunciations}}
+                                <a class="btn btn-sm btn-outline-primary inline-playable" href="{{{audiourl}}}">{{{text}}} <i class="fa-solid fa-volume-high"></i></a>
+                            {{/pronunciations}}
+                        </div>
+                    {{/hasaudio}}
                     {{#hasins}}<h5>{{{ ins }}}</h5>{{/hasins}}
                     {{#hascxs}}
                         {{#cxs}}
@@ -93,3 +100,14 @@
         {{/closematches}}
     </ul>
 {{/closematch}}
+
+{{#js}}
+    document.addEventListener('click', function (e) {
+        let element = e.target.closest('a.inline-playable');
+        if (element) {
+            e.preventDefault();
+            const audio = new Audio(element.href);
+            audio.play();
+        }
+    });
+{{/js}}

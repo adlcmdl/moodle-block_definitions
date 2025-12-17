@@ -159,6 +159,26 @@ function block_definitions_retrieve_definition($word, $dictionary, $format = 'no
                     $panel->hascxs = false;
                 }
                 $panel->cxs = $cxs;
+                if (isset($definition->hwi->prs)) {
+                    $pronunciations = [];
+                    foreach ($definition->hwi->prs as $prs) {
+                        $filename = $prs->sound->audio;
+                        if (substr($filename, 0, 3) == 'bix') {
+                            $subdir = 'bix';
+                        } elseif (substr($filename, 0, 2) == 'gg') {
+                            $subdir = 'gg';
+                        } else if (is_numeric(substr($filename, 0, 1)) || IntlChar::ispunct(substr($filename, 0, 1))) {
+                            $subdir = 'number';
+                        } else {
+                            $subdir = substr($filename, 0, 1);
+                        }
+                        $audio = 'https://media.merriam-webster.com/audio/prons/en/us/mp3/';
+                        $audio .= $subdir . '/' . $filename . '.mp3';
+                        $pronunciations[] = ['text' => $prs->mw, 'audiourl' => $audio];
+                    }
+                    $panel->hasaudio = true;
+                    $panel->pronunciations = $pronunciations;
+                }
                 $def = [];
                 if ($dictionary === 'thesaurus') {
                     $i = 1;
@@ -277,7 +297,6 @@ function block_definitions_retrieve_definition($word, $dictionary, $format = 'no
             $ret->closematches = [];
         }
     }
-
     return $ret;
 }
 

@@ -17,6 +17,9 @@ to make sure it will meet your needs.
 
 **Change Log**
 
+*current version*
+- Add support for pronunication audio.
+
 2025011700
 - Some formatting tweaks to make Moodle happy.
 

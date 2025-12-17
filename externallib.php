@@ -106,6 +106,16 @@ class block_definitions_external extends external_api {
                             'hasins' => new external_value(PARAM_BOOL, 'Is this word related to a similar one'),
                             'ins' => new external_value(PARAM_RAW, 'Similar word'),
                             'fl' => new external_value(PARAM_TEXT, 'Functional label'),
+                            'hasaudio' => new external_value(PARAM_BOOL, 'True if the definition has an audio pronounciation',
+                                    VALUE_OPTIONAL),
+                            'pronunciations' => new external_multiple_structure(
+                                    new external_single_structure(
+                                            [
+                                                'text' => new external_value(PARAM_TEXT, 'The text pronunication'),
+                                                'audiourl' => new external_value(PARAM_URL, 'The URL to the pronunication file.')
+                                            ]
+                                    ), '', VALUE_OPTIONAL
+                            ),                            
                             'def' => new external_multiple_structure(
                                     new external_single_structure(
                                             [

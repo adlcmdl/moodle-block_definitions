@@ -42,6 +42,11 @@ if ($ADMIN->fulltree) {
     $desc = get_string('thesaurus_api_desc', 'block_definitions');
     $settings->add(new admin_setting_configtext('block_definitions/api_thesaurus', $title, $desc, ''));
 
+    // Add a link for audio pronunciation.
+    $title = get_string('audiopronunciation', 'block_definitions');
+    $desc = get_string('audiopronunciationdesc', 'block_definitions');
+    $settings->add(new admin_setting_configcheckbox('block_definitions/audiopronunciation', $title, $desc, '1'));
+    
     // Should we hide offensive words?
     $title = get_string('hideoffensive', 'block_definitions');
     $desc = get_string('hideoffensivedesc', 'block_definitions');

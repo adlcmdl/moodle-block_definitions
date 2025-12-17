@@ -23,6 +23,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['audiopronunciation'] = 'Enable audio pronunciation';
+$string['audiopronunciationdesc'] = 'If an audio pronunciation exists, display the link';
 $string['collegiate_api'] = 'Collegiate API';
 $string['collegiate_api_desc'] = 'Enter the API key assigned to you for access to the Collegiate dictionary';
 $string['config_dictionary'] = 'Selected Dictionary';
