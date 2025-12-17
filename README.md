@@ -19,6 +19,7 @@ to make sure it will meet your needs.
 
 *current version*
 - Add support for pronunication audio.
+- Fix tabs to work with Bootstrap 5.
 
 2025011700
 - Some formatting tweaks to make Moodle happy.
