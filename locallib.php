@@ -162,22 +162,26 @@ function block_definitions_retrieve_definition($word, $dictionary, $format = 'no
                 if (isset($definition->hwi->prs)) {
                     $pronunciations = [];
                     foreach ($definition->hwi->prs as $prs) {
-                        $filename = $prs->sound->audio;
-                        if (substr($filename, 0, 3) == 'bix') {
-                            $subdir = 'bix';
-                        } elseif (substr($filename, 0, 2) == 'gg') {
-                            $subdir = 'gg';
-                        } else if (is_numeric(substr($filename, 0, 1)) || IntlChar::ispunct(substr($filename, 0, 1))) {
-                            $subdir = 'number';
-                        } else {
-                            $subdir = substr($filename, 0, 1);
+                        if (isset($prs->sound)) {
+                            $filename = $prs->sound->audio;
+                            if (substr($filename, 0, 3) == 'bix') {
+                                $subdir = 'bix';
+                            } elseif (substr($filename, 0, 2) == 'gg') {
+                                $subdir = 'gg';
+                            } else if (is_numeric(substr($filename, 0, 1)) || IntlChar::ispunct(substr($filename, 0, 1))) {
+                                $subdir = 'number';
+                            } else {
+                                $subdir = substr($filename, 0, 1);
+                            }
+                            $audio = 'https://media.merriam-webster.com/audio/prons/en/us/mp3/';
+                            $audio .= $subdir . '/' . $filename . '.mp3';
+                            $pronunciations[] = ['text' => $prs->mw, 'audiourl' => $audio];
                         }
-                        $audio = 'https://media.merriam-webster.com/audio/prons/en/us/mp3/';
-                        $audio .= $subdir . '/' . $filename . '.mp3';
-                        $pronunciations[] = ['text' => $prs->mw, 'audiourl' => $audio];
                     }
-                    $panel->hasaudio = true;
-                    $panel->pronunciations = $pronunciations;
+                    if (count($pronunciations) > 0) {
+                        $panel->hasaudio = true;
+                        $panel->pronunciations = $pronunciations;
+                    }
                 }
                 $def = [];
                 if ($dictionary === 'thesaurus') {
